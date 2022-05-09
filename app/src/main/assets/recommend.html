@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+
+        async function getrecomchartapi(symbol) {
+        // Storing response
+        const response = await fetch('https://mynewhw8.wn.r.appspot.com/recommendationdata/'+symbol);
+        // Storing data in form of JSON
+        data = await response.json();
+        console.log(data);
+
+        let i,
+    dataLength=data.length
+    let strongbuy=[],
+    buy=[],
+    hold=[],
+    sell=[],
+    strongsell=[],
+    time=[]
+    for (i = 0; i < dataLength; i += 1) {
+      strongbuy.push(data[i].strongBuy);
+      buy.push(data[i].buy);
+      hold.push(data[i].hold);
+      sell.push(data[i].sell);
+      strongsell.push(data[i].strongSell);
+      time.push(data[i].period);
+    }
+
+    Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Recommendation Trends'
+    },
+    xAxis: {
+        categories: time
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Analysis'
+        },
+        stackLabels: {
+            enabled: false,
+            style: {
+                fontWeight: 'bold',
+                color: ( // theme
+                    Highcharts.defaultOptions.title.style &&
+                    Highcharts.defaultOptions.title.style.color
+                ) || 'gray'
+            }
+        }
+    },
+    legend: {
+        align: 'center',
+        x: -10,
+        verticalAlign: 'bottom',
+        y: 0,
+        floating: false,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false
+    },
+    tooltip: {
+        headerFormat: '<b>{point.x}</b><br/>',
+        pointFormat: '{series.name}: {point.y}<br/>'
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    series: [{
+          name: 'Strong Buy',
+          data: strongbuy, color: '#186f37'
+      }, {
+          name: 'Buy',
+          data: buy, color: '#1cb955'
+      }, {
+          name: 'Hold',
+          data: hold, color: '#b88b1d'
+      },
+      {
+          name: 'Sell',
+          data: sell, color: '#f45b5a'
+      },
+      {
+          name: 'Strong Sell',
+          data: strongsell, color: '#813131'
+      }]
+});
+
+
+    }
+
+    </script>
+</head>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<div id="container"></div>
+</body>
+</html>

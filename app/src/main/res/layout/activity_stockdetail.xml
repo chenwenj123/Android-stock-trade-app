@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".stockdetail"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        <LinearLayout
+            android:id="@+id/linlaHeaderProgress"
+            android:layout_width="fill_parent"
+            android:layout_height="760dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="50dp"
+            android:layout_alignParentTop="true"
+            >
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:indeterminateTint="@color/purple_500"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="70dp"></ImageView>
+
+            <TextView
+                android:id="@+id/ticker"
+                android:layout_width="70dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="67dp"
+                android:layout_marginTop="70dp"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/company"
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="67dp"
+                android:layout_marginTop="95dp"
+                android:textColor="#939292"
+                android:textSize="13dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="70dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="320dp"
+                android:layout_marginTop="70dp"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:id="@+id/dollar"
+                android:layout_width="20dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="300dp"
+                android:layout_marginTop="70dp"
+                android:paddingLeft="6dp"
+                android:text="$"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="30dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="240dp"
+                android:layout_marginTop="98dp"></ImageView>
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="150dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="280dp"
+                android:layout_marginTop="98dp"
+                android:layout_marginRight="5dp"
+                android:textSize="14dp"></TextView>
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="530dp"
+                app:tabGravity="fill"
+                app:tabIconTint="@drawable/selector"
+                app:tabIndicatorColor="@color/purple_700"
+                app:tabMode="fixed" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                android:layout_marginTop="135dp"
+                android:layout_weight="1">
+
+            </androidx.viewpager2.widget.ViewPager2>
+
+            <!--port-->
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="590dp"
+                android:text="Portfolio"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="625dp"
+                android:text="Shares Owned :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/shareown"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="625dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="655dp"
+                android:text="Avg.Cost/Share:"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <Button
+                android:id="@+id/trade"
+                android:layout_width="120dp"
+                android:layout_height="53dp"
+                android:layout_marginLeft="248dp"
+                android:layout_marginTop="655dp"
+                android:backgroundTint="#4CAF50"
+                android:text="Trade"
+                android:textSize="19dp"
+                app:cornerRadius="8dp"></Button>
+
+            <TextView
+                android:id="@+id/avgcost"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="655dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="685dp"
+                android:text="Total Cost :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/totalcost"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="685dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="715dp"
+                android:text="Change :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/change"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="715dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="745dp"
+                android:text="Market Value :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/marketvalue"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="745dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+            <!--stats-->
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="790dp"
+                android:text="Stats"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="820dp"
+                android:text="Open Price :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/openprice"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="820dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="820dp"
+                android:text="High Price :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/highprice"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="295dp"
+                android:layout_marginTop="820dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="850dp"
+                android:text="Low Price :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/lowprice"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="850dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="850dp"
+                android:text="Prev.Close :"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/prevclose"
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="295dp"
+                android:layout_marginTop="850dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <!--ABOUT-->
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="900dp"
+                android:text="About"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="935dp"
+                android:text="IPO Start Date"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/ipodate"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="935dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="965dp"
+                android:text="Industry"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/industry"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="965dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="995dp"
+                android:text="Webpage"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/web"
+                android:layout_width="170dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="995dp"
+                android:autoLink="web"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="1025dp"
+                android:text="Company Peers"
+                android:textColor="@color/black"
+                android:textSize="16dp"></TextView>
+
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="1070dp"
+                android:text="Insights"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1105dp"
+                android:text="Social Sentiments"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp"></TextView>
+
+            <TableLayout
+                android:layout_width="360dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="1150dp">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/companyname"
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#E0E3E5"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:text="Date "
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#E0E3E5"
+                        android:paddingLeft="2dp"
+                        android:text="Reddit "
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="#E0E3E5"
+                        android:paddingLeft="2dp"
+                        android:text="Twitter"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#E0E3E5"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:text="Total Mentions"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/totalred"
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#f4f2f4"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/totaltwit"
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="#f4f2f4"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#E0E3E5"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:text="Positive Mentions"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/posred"
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#f4f2f4"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/postwit"
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="#f4f2f4"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:textSize="16dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_column="0"
+                        android:layout_margin="1dp"
+                        android:background="#E0E3E5"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:text="Negative Mentions"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/negred"
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="1"
+                        android:layout_margin="1dp"
+                        android:background="#f4f2f4"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/negtwit"
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
+                        android:layout_column="2"
+                        android:layout_margin="1dp"
+                        android:background="#f4f2f4"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="1dp"
+                        android:textSize="16dp" />
+                </TableRow>
+
+            </TableLayout>
+
+            <WebView
+                android:id="@+id/recommend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1280dp"></WebView>
+
+            <WebView
+                android:id="@+id/earning"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1630dp"></WebView>
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="26dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="2070dp"
+                android:text="News"
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:textStyle="bold"></TextView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="390dp"
+                android:layout_height="260dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2105dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/newsimage1"
+                        android:layout_width="match_parent"
+                        android:layout_height="175dp"
+                        android:background="@drawable/rounded_outline"
+                        android:clipToOutline="true"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:id="@+id/source"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="180dp"
+                        android:text="aapl"
+                        android:textSize="16dp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/timeago"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="105dp"
+                        android:layout_marginTop="180dp"
+                        android:text="aapl"
+                        android:textSize="16dp"></TextView>
+
+                    <TextView
+                        android:id="@+id/headline"
+                        android:layout_width="375dp"
+                        android:layout_height="46dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="210dp"
+                        android:text="aapl"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold"></TextView>
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRVNews"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2370dp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/peerview1"
+                android:layout_width="280dp"
+                android:layout_height="300dp"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="1025dp" />
+        </RelativeLayout>
+         </RelativeLayout>
+
+</ScrollView>

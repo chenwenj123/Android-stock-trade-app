@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+
+        var data;
+    // Defining async function
+    async function gethistchartapi(stock) {
+        // Storing response
+        let to_unix = Math.floor(Date.now() / 1000);
+        let from_unix = to_unix - 6*60*60
+        const response = await fetch('https://mynewhw8.wn.r.appspot.com/histdata/'+stock+'/' + from_unix +'/'+to_unix);
+
+        // Storing data in form of JSON
+        data = await response.json();
+        console.log(data);
+
+        if (response) {
+        let i, Time;
+        // split the data set into ohlc and volume
+        let ohlc = [],
+        volume = [],
+        dataLength = data.c.length,
+            // set the allowed units for data grouping
+            groupingUnits = [
+        [
+          'week', // unit name
+          [1], // allowed multiples
+        ],
+        ['month', [1, 2, 3, 4, 6]],
+      ];
+
+        for (i=0; i < dataLength; i += 1) {
+            Time = data.t[i]*1000;
+            ohlc.push([
+                Time,
+                data.o[i], // open
+                data.h[i], // high
+                data.l[i], // low
+                data.c[i], // close
+
+            ]);
+
+            volume.push([
+                Time, // the date
+                data.v[i], // the volume
+            ]);
+        }
+
+        // create the chart
+        Highcharts.stockChart('container', {
+
+            rangeSelector: {
+                selected: 2
+            },
+
+            title: {
+                text:stock+' Historical' //改
+            },
+
+            subtitle: {
+                text: 'With SMA and Volume by Price technical indicators'
+            },
+
+            yAxis: [{
+                startOnTick: false,
+                endOnTick: false,
+                labels: {
+                    align: 'right',
+                    x: -3
+                },
+                title: {
+                    text: 'OHLC'
+                },
+                height: '60%',
+                lineWidth: 2,
+                resize: {
+                    enabled: true
+                }
+            }, {
+                labels: {
+                    align: 'right',
+                    x: -3
+                },
+                title: {
+                    text: 'Volume'
+                },
+                top: '65%',
+                height: '35%',
+                offset: 0,
+                lineWidth: 2
+            }],
+
+            tooltip: {
+                split: true
+            },
+
+            plotOptions: {
+                series: {
+                    dataGrouping: {
+                        units: groupingUnits
+                    }
+                }
+            },
+
+            series: [{
+                type: 'candlestick',
+                name: stock,
+                id: stock,
+                zIndex: 2,
+                data: ohlc
+            }, {
+                type: 'column',
+                name: 'Volume',
+                id: 'volume',
+                data: volume,
+                yAxis: 1
+            }, {
+                type: 'vbp',
+                linkedTo: stock,
+                params: {
+                    volumeSeriesID: 'volume'
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                zoneLines: {
+                    enabled: false
+                }
+            }, {
+                type: 'sma',
+                linkedTo: stock,
+                zIndex: 1,
+                marker: {
+                    enabled: false
+                }
+            }]
+        });
+
+    }
+    //console.log(dailycloseprice);
+    }
+
+
+    </script>
+
+</head>
+<body>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+<script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
+
+<div id="container"></div>
+
+</body>
+</html>

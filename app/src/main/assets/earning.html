@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+
+       async function getearningchartapi(symbol) {
+        // Storing response
+        const response = await fetch('https://mynewhw8.wn.r.appspot.com/companyearningsdata/'+symbol);
+        // Storing data in form of JSON
+        data = await response.json();
+        console.log(data);
+        let i, xlabel,
+    dataLength=data.length
+    let actual=[],
+    estimate=[],
+    surprise=[],
+    time=[],
+    x=[]
+    for (i = 0; i < dataLength; i += 1) {
+      actual.push(data[i].actual);
+      estimate.push(data[i].estimate);
+      surprise.push(data[i].surprise.toFixed(2));
+      time.push(data[i].period);
+      xlabel=time[i] + '</br> suprise:'+surprise[i];
+      x.push(xlabel)
+    }
+    Highcharts.chart('container', {
+        chart: {
+          zoomType: 'xy'
+      },
+      title: {
+          text: 'Historical EPS Surprises'
+      },
+
+      xAxis: [{
+          categories: x,
+          crosshair: true
+
+      }],
+
+      yAxis: [{ // Primary yAxis
+          labels: {
+              style: {
+                  color: "black"
+              }
+          },
+          title: {
+              text: 'Quarterly EPS',
+              style: {
+                  color: "grey"
+              }
+          }
+      }],
+      tooltip: {
+          shared: true
+      },
+      legend: {
+         enable:true,
+      },
+      series: [{
+          name: 'Actual',
+          type: 'spline',
+          data: actual,
+
+      }, {
+          name: 'Estimate',
+          type: 'spline',
+          data: estimate,
+
+      }]
+
+    });
+    }
+    getearningchartapi(url);
+    </script>
+</head>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<div id="container"></div>
+</body>
+</html>

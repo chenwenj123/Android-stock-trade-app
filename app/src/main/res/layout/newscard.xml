@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="390dp"
+        app:cardCornerRadius="10dp"
+        android:layout_height="120dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/newscard"
+        >
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginLeft="265dp"
+            android:id="@+id/newsimage"
+            android:background="@drawable/rounded_outline"
+            android:clipToOutline="true"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:text="aapl"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/source1">
+        </TextView>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="20dp"
+            android:text="aapl"
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:layout_marginLeft="115dp"
+            android:id="@+id/timeago1">
+        </TextView>
+
+        <TextView
+            android:layout_width="195dp"
+            android:layout_height="65dp"
+            android:text="aapl"
+            android:layout_marginTop="45dp"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/newstitle">
+        </TextView>
+
+    </androidx.cardview.widget.CardView>
+
