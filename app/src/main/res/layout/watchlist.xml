@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    app:strokeColor="#AFADAD"
+    app:strokeWidth="0.5dp"
+    >
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="26dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/ticker1"
+        android:textStyle="bold"
+        android:text="AAPL"
+        android:layout_marginTop="13dp"
+        android:textSize="19dp"
+        android:textColor="@color/black">
+    </TextView>
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="150dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#939292"
+        android:textSize="15dp"
+        android:layout_marginTop="50dp"
+        android:text="name"
+        android:textStyle="bold"></TextView>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="295dp"
+        android:id="@+id/price1"
+        android:textStyle="bold"
+        android:text="AAPL"
+        android:layout_marginTop="13dp"
+        android:textSize="19dp"
+        android:textColor="@color/black">
+    </TextView>
+
+    <TextView
+        android:layout_width="15dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="276dp"
+        android:textStyle="bold"
+        android:text="$"
+        android:layout_marginTop="13dp"
+        android:textSize="19dp"
+        android:textColor="@color/black">
+    </TextView>
+
+    <TextView
+        android:id="@+id/all1"
+        android:layout_width="145dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="255dp"
+        android:textColor="#939292"
+        android:textSize="15dp"
+        android:layout_marginTop="50dp"
+        android:text="name"
+        android:textStyle="bold"></TextView>
+
+    <ImageView
+        android:id="@+id/arrow1"
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="50dp"
+        ></ImageView>
+
+    <ImageView
+        android:id="@+id/jiantou"
+        android:layout_width="20dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="370dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_chevron_right"></ImageView>
+
+
+
+</com.google.android.material.card.MaterialCardView>

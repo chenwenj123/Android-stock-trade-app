@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript">
+
+// Defining async function
+async function getdailychartapi(stock) {
+    // Storing response
+     let to_unix = Math.floor(Date.now() / 1000);
+     let from_unix = to_unix - 6*60*60
+    const response = await fetch('https://mynewhw8.wn.r.appspot.com/histchart/'+stock+'/'+from_unix+"/"+to_unix);
+    const dresponse=await fetch("https://mynewhw8.wn.r.appspot.com/latestprice/"+stock);
+    // Storing data in form of JSON
+    var data = await response.json();
+    var price= await dresponse.json();
+    console.log(price);
+
+    if (response) {
+        let dailycloseprice = [];
+        let dataLength = data.c.length;
+        let i;
+        for (i = 0; i < dataLength; i += 1) {
+        dailycloseprice.push([(data.t[i]*1000), data.c[i]]);
+
+        let dailyChartsColor;
+        if (price.d > 0) {
+              dailyChartsColor = '#008000';
+            } else if (price.d < 0) {
+              dailyChartsColor = '#FF0000';
+            } else {
+              dailyChartsColor = '#000000';
+            }
+
+        //create chart
+        Highcharts.stockChart('container', {
+
+            rangeSelector: {
+                        enabled: false,
+                    },
+
+                    navigator: {
+                        enabled: false,
+                    },
+
+            title: {
+            text: stock+' Hourly Price Variation'
+            },
+
+            series: [{
+            name: stock,
+            color: dailyChartsColor,
+            data: dailycloseprice,
+            tooltip: {
+                valueDecimals: 2
+            }
+}]
+});
+}
+    console.log(dailycloseprice);
+}
+}
+
+
+</script>
+
+</head>
+
+<body>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+<div class="container" id="container"></div>
+</body>
+</html>

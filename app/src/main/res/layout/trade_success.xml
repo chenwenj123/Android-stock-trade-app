@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:paddingHorizontal="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_round_green"
+    >
+
+    <TextView
+        android:id="@+id/detail_trade_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif"
+        android:text="Congratulations!"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textFontWeight="700"
+        android:textSize="25dp" />
+
+
+
+    <TextView
+        android:id="@+id/show_message"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:text="$9313.46 available to buy MSFT"
+        android:textStyle="bold|italic"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+
+        android:textSize="15dp" />
+
+
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/white"
+        android:text="DONE"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"
+        android:textSize="11dp"
+
+        />
+
+
+
+
+</LinearLayout>
